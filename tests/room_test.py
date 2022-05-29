@@ -5,18 +5,17 @@ from src.guest import Guest
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room = Room("Rock Room")
-        self.song_list = {
-            "You\'re the best around": "Joe Esposito",
-            "Eye of the Tiger": "Survivor",
-            "Ride the Lightning": "Metallica",
-            "Just dropped in": "The First Edition"
-        }
+        
 
     def test_does_room_have_name(self):
         self.assertEqual("Rock Room", self.room.room_name)
 
     def test_has_room_got_song_list(self):
-        self.assertEqual([], self.room.song_list)
+        self.assertEqual({"You\'re the best around": "Joe Esposito",
+            "Eye of the Tiger": "Survivor",
+            "Ride the Lightning": "Metallica",
+            "Paranoid": "Black Sabbath"
+        },self.room.song_list)
     
     def test_has_room_got_guest_list(self):
         self.assertEqual([], self.room.guest_list)
@@ -42,8 +41,16 @@ class TestRoom(unittest.TestCase):
         self.room.check_guest_out(0)
 
         self.assertEqual(3, self.room.guest_count())
-    
-    
-    
 
-        
+    def test_can_song_be_added(self):
+        new_song_1 = {"Just dropped in": "The First Edition"}
+
+        self.room.add_song_to_list(new_song_1)
+
+        self.assertEqual({
+            "You\'re the best around": "Joe Esposito",
+            "Eye of the Tiger": "Survivor",
+            "Ride the Lightning": "Metallica",
+            "Paranoid": "Black Sabbath",
+            "Just dropped in": "The First Edition"
+            }, self.room.song_list)
