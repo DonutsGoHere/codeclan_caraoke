@@ -1,12 +1,7 @@
 class Room:
     def __init__(self, room_name):
         self.room_name = room_name
-        self.song_list = {
-            "You\'re the best around": "Joe Esposito",
-            "Eye of the Tiger": "Survivor",
-            "Ride the Lightning": "Metallica",
-            "Paranoid": "Black Sabbath"
-        }
+        self.song_list = []
         self.guest_list = []
     
     def guest_count(self):
@@ -22,6 +17,6 @@ class Room:
         return self.guest_list
     
     def add_song_to_list(self, song):
-        self.song_list.update(song)
+        self.song_list.append(song)
     
     
